@@ -1,0 +1,44 @@
+using System;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+
+namespace WebApplication1.ApiModel {
+
+  /// <summary>
+  /// 
+  /// </summary>
+  [DataContract]
+  public class SearchResult {
+    /// <summary>
+    /// Gets or Sets PosList
+    /// </summary>
+    [DataMember(Name="posList", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "posList")]
+    public List<Pos> PosList { get; set; }
+
+
+    /// <summary>
+    /// Get the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()  {
+      var sb = new StringBuilder();
+      sb.Append("class SearchResult {\n");
+      sb.Append("  PosList: ").Append(PosList).Append("\n");
+      sb.Append("}\n");
+      return sb.ToString();
+    }
+
+    /// <summary>
+    /// Get the JSON string presentation of the object
+    /// </summary>
+    /// <returns>JSON string presentation of the object</returns>
+    public string ToJson() {
+      return JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
+
+}
+}
