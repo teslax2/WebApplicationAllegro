@@ -9,6 +9,8 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using WebApplication1.Api;
+using WebApplication1.Data;
 
 namespace WebApplication1
 {
@@ -34,6 +36,8 @@ namespace WebApplication1
 
             services.AddDbContext<WebApplication1Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WebApplication1Context")));
+            services.AddSingleton<IApi,AllegroApi>();
+            services.AddScoped<IDbOperations, DbOperationListingOffer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

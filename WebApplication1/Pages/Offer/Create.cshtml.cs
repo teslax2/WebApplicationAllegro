@@ -21,11 +21,6 @@ namespace WebApplication1.Pages.Offer
 
         public IActionResult OnGet()
         {
-        ViewData["DeliveryID"] = new SelectList(_context.Set<OfferDelivery>(), "ID", "ID");
-        ViewData["PromotionID"] = new SelectList(_context.Set<OfferPromotion>(), "ID", "ID");
-        ViewData["SellingModeID"] = new SelectList(_context.Set<OfferSellingMode>(), "ID", "ID");
-        ViewData["StockID"] = new SelectList(_context.Set<OfferStock>(), "ID", "ID");
-        ViewData["VendorID"] = new SelectList(_context.Set<OfferVendor>(), "ID", "ID");
             return Page();
         }
 

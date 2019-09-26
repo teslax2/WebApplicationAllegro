@@ -25,39 +25,29 @@
                 <span asp-validation-for="ListingOffer.SellerID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ListingOffer.PromotionID" class="control-label"></label>
-                <select asp-for="ListingOffer.PromotionID" class="form-control" asp-items="ViewBag.PromotionID"></select>
-                <span asp-validation-for="ListingOffer.PromotionID" class="text-danger"></span>
+                <label asp-for="ListingOffer.DeliveryCost" class="control-label"></label>
+                <input asp-for="ListingOffer.DeliveryCost" class="form-control" />
+                <span asp-validation-for="ListingOffer.DeliveryCost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ListingOffer.DeliveryID" class="control-label"></label>
-                <select asp-for="ListingOffer.DeliveryID" class="form-control" asp-items="ViewBag.DeliveryID"></select>
-                <span asp-validation-for="ListingOffer.DeliveryID" class="text-danger"></span>
+                <label asp-for="ListingOffer.SellingMode" class="control-label"></label>
+                <input asp-for="ListingOffer.SellingMode" class="form-control" />
+                <span asp-validation-for="ListingOffer.SellingMode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ListingOffer.SellingModeID" class="control-label"></label>
-                <select asp-for="ListingOffer.SellingModeID" class="form-control" asp-items="ViewBag.SellingModeID"></select>
-                <span asp-validation-for="ListingOffer.SellingModeID" class="text-danger"></span>
+                <label asp-for="ListingOffer.Price" class="control-label"></label>
+                <input asp-for="ListingOffer.Price" class="form-control" />
+                <span asp-validation-for="ListingOffer.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ListingOffer.StockID" class="control-label"></label>
-                <select asp-for="ListingOffer.StockID" class="form-control" asp-items="ViewBag.StockID"></select>
-                <span asp-validation-for="ListingOffer.StockID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ListingOffer.VendorID" class="control-label"></label>
-                <select asp-for="ListingOffer.VendorID" class="form-control" asp-items="ViewBag.VendorID"></select>
-                <span asp-validation-for="ListingOffer.VendorID" class="text-danger"></span>
+                <label asp-for="ListingOffer.Stock" class="control-label"></label>
+                <input asp-for="ListingOffer.Stock" class="form-control" />
+                <span asp-validation-for="ListingOffer.Stock" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ListingOffer.Category" class="control-label"></label>
                 <input asp-for="ListingOffer.Category" class="form-control" />
                 <span asp-validation-for="ListingOffer.Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ListingOffer.PublicationID" class="control-label"></label>
-                <input asp-for="ListingOffer.PublicationID" class="form-control" />
-                <span asp-validation-for="ListingOffer.PublicationID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

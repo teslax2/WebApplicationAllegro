@@ -7,7 +7,7 @@ using WebApplication1.ApiModel;
 
 namespace WebApplication1.Api
 {
-    interface IApi
+    public interface IApi
     {
         Task<Token> Login(RequestLogin requestLogin);
         Task<ListingResponse> Offers(RequestOffers requestOffers);

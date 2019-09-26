@@ -28,12 +28,7 @@ namespace WebApplication1.Pages.Offer
                 return NotFound();
             }
 
-            ListingOffer = await _context.ListingOffer
-                .Include(l => l.Delivery)
-                .Include(l => l.Promotion)
-                .Include(l => l.SellingMode)
-                .Include(l => l.Stock)
-                .Include(l => l.Vendor).FirstOrDefaultAsync(m => m.ID == id);
+            ListingOffer = await _context.ListingOffer.FirstOrDefaultAsync(m => m.ID == id);
 
             if (ListingOffer == null)
             {

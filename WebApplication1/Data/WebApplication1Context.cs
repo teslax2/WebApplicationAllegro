@@ -15,12 +15,6 @@ namespace WebApplication1.Models
         }
 
         public DbSet<ListingOffer> ListingOffer { get; set; }
-        public DbSet<OfferSeller> Seller { get; set; }
-        public DbSet<OfferPromotion> Promotion { get; set; }
-        public DbSet<OfferDelivery> Delivery { get; set; }
-        public DbSet<OfferImages> Images { get; set; }
-        public DbSet<OfferSellingMode> SellingMode { get; set; }
-        public DbSet<OfferStock> Stock { get; set; }
-        public DbSet<OfferVendor> Vendor { get; set; }
+        public DbSet<OfferImages> OfferImages { get; set; }
     }
 }

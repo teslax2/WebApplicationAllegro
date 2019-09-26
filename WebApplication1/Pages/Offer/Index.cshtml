@@ -20,25 +20,19 @@
                 @Html.DisplayNameFor(model => model.ListingOffer[0].SellerID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListingOffer[0].Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListingOffer[0].PublicationID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListingOffer[0].Promotion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListingOffer[0].Delivery)
+                @Html.DisplayNameFor(model => model.ListingOffer[0].DeliveryCost)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ListingOffer[0].SellingMode)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ListingOffer[0].Price)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ListingOffer[0].Stock)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListingOffer[0].Vendor)
+                @Html.DisplayNameFor(model => model.ListingOffer[0].Category)
             </th>
             <th></th>
         </tr>
@@ -53,25 +47,19 @@
                 @Html.DisplayFor(modelItem => item.SellerID)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.DeliveryCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellingMode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublicationID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Promotion.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Delivery.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SellingMode.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vendor.ID)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
@@ -79,6 +67,14 @@
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
-}
+        <tr>
+            @foreach (var image in item.Images)
+            {
+                <td>
+                    <img src="@image.Url" alt="Alternate Text" width="200" height="200" />
+                </td>
+            }
+        </tr>
+}       
     </tbody>
 </table>

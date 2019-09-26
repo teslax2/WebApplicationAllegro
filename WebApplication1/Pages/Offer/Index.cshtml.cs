@@ -23,12 +23,22 @@ namespace WebApplication1.Pages.Offer
 
         public async Task OnGetAsync()
         {
-            ListingOffer = await _context.ListingOffer
-                .Include(l => l.Delivery)
-                .Include(l => l.Promotion)
-                .Include(l => l.SellingMode)
-                .Include(l => l.Stock)
-                .Include(l => l.Vendor).ToListAsync();
+            ListingOffer = await _context.ListingOffer.Include(p => p.Images).ToListAsync();
+            //ListingOffer = await (from offer in _context.ListingOffer
+            //                join images in _context.OfferImages on offer.ID equals images.ListingOfferID
+            //                select new ListingOffer
+            //                {
+            //                    Category = offer.Category,
+            //                    DeliveryCost = offer.DeliveryCost,
+            //                    ID = offer.ID,
+            //                    SellerID = offer.SellerID,
+            //                    SellingMode = offer.SellingMode,
+            //                    Stock = offer.Stock,
+            //                    Name = offer.Name,
+            //                    Price = offer.Price,
+            //                    Images = images
+
+            //                }).ToListAsync();
         }
     }
 }

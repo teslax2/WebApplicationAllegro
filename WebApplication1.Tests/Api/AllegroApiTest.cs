@@ -1,6 +1,4 @@
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using System;
 using System.Threading.Tasks;
 using WebApplication1.Api;
 using WebApplication1.Api.Requests;
