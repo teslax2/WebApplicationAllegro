@@ -23,7 +23,7 @@ namespace WebApplication1.Pages.Offer
         [BindProperty]
         public ListingOffer ListingOffer { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -67,7 +67,7 @@ namespace WebApplication1.Pages.Offer
             return RedirectToPage("./Index");
         }
 
-        private bool ListingOfferExists(int id)
+        private bool ListingOfferExists(string id)
         {
             return _context.ListingOffer.Any(e => e.ID == id);
         }

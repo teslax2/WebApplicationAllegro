@@ -4,7 +4,7 @@ namespace WebApplication1.Model
 {
     public class ListingOffer
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string Name { get; set; }
         public string SellerID { get; set; }
         public double DeliveryCost { get; set; }

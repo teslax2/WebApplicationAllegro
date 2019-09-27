@@ -26,7 +26,7 @@ namespace WebApplication1.Pages
                 var offers = await _api.Offers(new RequestOffers(Endpoints.URL, token.access_token, "xiaomi mi mix"));
                 if (offers is ListingResponse listingResponse)
                 {
-                    _dbOperations.Add<ListingResponseOffers>(offers.Items);
+                    _dbOperations.AddOrUpdate<ListingResponseOffers>(offers.Items);
                 }
             }
         }

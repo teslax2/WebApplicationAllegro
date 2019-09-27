@@ -9,5 +9,6 @@ namespace WebApplication1.Data
     public interface IDbOperations
     {
         int Add<T>(T items);
+        int AddOrUpdate<T>(T items);
     }
 }
