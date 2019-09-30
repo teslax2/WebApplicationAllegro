@@ -20,15 +20,15 @@ namespace WebApplication1.Pages
         }
         public async Task OnGet()
         {
-            var tokenResult = await _api.Login(new RequestLogin(Endpoints.URLAuth, Endpoints.Login, "fc475aa8dfe4424fb1507bebea59c924", "jWo1K9tKptPaIza31ByS3WxE678FHJxK7dsFinXFxJD1rgoypuTz8LmuBEmHoLQa"));
-            if (tokenResult is Token token)
-            {
-                var offers = await _api.Offers(new RequestOffers(Endpoints.URL, token.access_token, "xiaomi mi mix"));
-                if (offers is ListingResponse listingResponse)
-                {
-                    _dbOperations.AddOrUpdate<ListingResponseOffers>(offers.Items);
-                }
-            }
+            //var tokenResult = await _api.Login(new RequestLogin(Endpoints.URLAuth, Endpoints.Login, "fc475aa8dfe4424fb1507bebea59c924", "jWo1K9tKptPaIza31ByS3WxE678FHJxK7dsFinXFxJD1rgoypuTz8LmuBEmHoLQa"));
+            //if (tokenResult is Token token)
+            //{
+            //    var offers = await _api.Offers(new RequestOffers(Endpoints.URL, token.access_token, "xiaomi mi mix"));
+            //    if (offers is ListingResponse listingResponse)
+            //    {
+            //        _dbOperations.AddOrUpdate<ListingResponseOffers>(offers.Items);
+            //    }
+            //}
         }
     }
 }

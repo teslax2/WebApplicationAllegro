@@ -54,3 +54,11 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.w-200px {
+    width: 200px;
+}
+
+.h-auto {
+    height: auto;
+}

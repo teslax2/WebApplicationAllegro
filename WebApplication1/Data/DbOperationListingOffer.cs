@@ -35,7 +35,7 @@ namespace WebApplication1.Data
                 var itemsToAdd = GetOffers(listingOffer);
                 foreach (var item in itemsToAdd)
                 {
-                    if (_context.ListingOffer.Any(p => p.ID == item.ID))
+                    if (_context.ListingOffer.Contains(item))
                         _context.Update(item);
                     else
                         _context.Add(item);

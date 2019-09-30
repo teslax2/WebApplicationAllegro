@@ -28,8 +28,8 @@ namespace WebApplication1.Pages.Offer
                 return NotFound();
             }
 
-            ListingOffer = await _context.ListingOffer.FirstOrDefaultAsync(m => m.ID == id);
-
+            ListingOffer = await _context.ListingOffer.Include(p=>p.Images).FirstOrDefaultAsync(m => m.ID == id);
+            ViewData["Images"] = ListingOffer.Images.ToList();
             if (ListingOffer == null)
             {
                 return NotFound();

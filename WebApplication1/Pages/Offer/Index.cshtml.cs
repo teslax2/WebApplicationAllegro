@@ -20,25 +20,28 @@ namespace WebApplication1.Pages.Offer
         }
 
         public IList<ListingOffer> ListingOffer { get;set; }
-
-        public async Task OnGetAsync()
+        [BindProperty(SupportsGet = true)]
+        public string FilterString { get; set; }
+        public async Task OnGetAsync(string order = "")
         {
-            ListingOffer = await _context.ListingOffer.Include(p => p.Images).ToListAsync();
-            //ListingOffer = await (from offer in _context.ListingOffer
-            //                join images in _context.OfferImages on offer.ID equals images.ListingOfferID
-            //                select new ListingOffer
-            //                {
-            //                    Category = offer.Category,
-            //                    DeliveryCost = offer.DeliveryCost,
-            //                    ID = offer.ID,
-            //                    SellerID = offer.SellerID,
-            //                    SellingMode = offer.SellingMode,
-            //                    Stock = offer.Stock,
-            //                    Name = offer.Name,
-            //                    Price = offer.Price,
-            //                    Images = images
-
-            //                }).ToListAsync();
+            ViewData["Order"] = order;
+            var listingOfferFilterred = new List<ListingOffer>();
+            if (!string.IsNullOrEmpty(FilterString))
+                listingOfferFilterred = await _context.ListingOffer.Include(p => p.Images).Where(p=>p.Name.Contains(FilterString)).ToListAsync();
+            else
+                listingOfferFilterred = await _context.ListingOffer.Include(p => p.Images).ToListAsync();
+            switch (order)
+            {
+                case "asc":
+                    ListingOffer = listingOfferFilterred.OrderBy(p => p.Price).ToList();
+                    break;
+                case "desc":
+                    ListingOffer = listingOfferFilterred.OrderByDescending(p => p.Price).ToList();
+                    break;
+                default:
+                    ListingOffer = listingOfferFilterred;
+                    break;
+            }
         }
     }
 }
