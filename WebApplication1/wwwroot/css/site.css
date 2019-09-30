@@ -62,3 +62,6 @@ body {
 .h-auto {
     height: auto;
 }
+td {
+    font-size: 16px;
+}

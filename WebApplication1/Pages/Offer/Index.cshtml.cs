@@ -22,9 +22,11 @@ namespace WebApplication1.Pages.Offer
         public IList<ListingOffer> ListingOffer { get;set; }
         [BindProperty(SupportsGet = true)]
         public string FilterString { get; set; }
-        public async Task OnGetAsync(string order = "")
+        public async Task OnGetAsync(string order = "", string filter = "")
         {
             ViewData["Order"] = order;
+            if (!string.IsNullOrEmpty(filter))
+                FilterString = filter;
             var listingOfferFilterred = new List<ListingOffer>();
             if (!string.IsNullOrEmpty(FilterString))
                 listingOfferFilterred = await _context.ListingOffer.Include(p => p.Images).Where(p=>p.Name.Contains(FilterString)).ToListAsync();

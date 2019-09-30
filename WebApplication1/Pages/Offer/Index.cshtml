@@ -12,11 +12,11 @@
 </p>
 <form class="form-inline" id="formFilter">
     <div class="form-group mx-sm-3 mb-2">
-        <input asp-for="FilterString" type="text" class="form-control" placeholder="Name">
+        <input asp-for="FilterString" type="text" class="form-control" placeholder="Name" id="filterInput">
     </div>
     <button type="submit" class="btn btn-primary mb-2" id="FilterButton">Filter</button>
 </form>
-<table class="table" id="mainTable">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -32,12 +32,9 @@
                 @Html.DisplayNameFor(model => model.ListingOffer[0].SellingMode)
             </th>
             <th>
-                @{ 
-                if ((string)ViewData["Order"] == "desc")
-                    {<a asp-page="/Offer/Index" asp-route-order="asc">@Html.DisplayNameFor(model => model.ListingOffer[0].Price)</a>}
-                else
-                    {<a asp-page="/Offer/Index" asp-route-order="desc">@Html.DisplayNameFor(model => model.ListingOffer[0].Price)</a>}
-                }
+                @Html.DisplayNameFor(model => model.ListingOffer[0].Price)
+                <a asp-page="/Offer/Index" asp-route-order="asc" class="order">Up</a>
+                <a asp-page="/Offer/Index" asp-route-order="desc" class="order">Down</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ListingOffer[0].Stock)
@@ -48,7 +45,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="mainTable">
         @foreach (var item in Model.ListingOffer)
         {
             <tr>
