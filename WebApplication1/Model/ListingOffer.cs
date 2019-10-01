@@ -12,7 +12,9 @@ namespace WebApplication1.Model
         public double Price { get; set; }
         public int Stock { get; set; }
         public string Category { get; set; }
+        public int SearchItemID { get; set; }
 
         public ICollection<OfferImages> Images { get; set; }
+        public SearchItem SearchItem { get; set; }
     }
 }

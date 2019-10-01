@@ -16,5 +16,6 @@ namespace WebApplication1.Models
 
         public DbSet<ListingOffer> ListingOffer { get; set; }
         public DbSet<OfferImages> OfferImages { get; set; }
+        public DbSet<SearchItem> SearchItems { get; set; }
     }
 }

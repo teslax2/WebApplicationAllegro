@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.Model;
 using WebApplication1.Models;
 
 namespace WebApplication1.Data
@@ -18,10 +19,10 @@ namespace WebApplication1.Data
 
         public int Add<T>(T items)
         {
-            if (items is ApiModel.ListingResponseOffers listingOffer)
+            if (items is ListingResponseSearchItem listingResponseSearchItem)
             {
-                var itemsToAdd = GetOffers(listingOffer);
-                _context.ListingOffer.AddRange(itemsToAdd);
+                listingResponseSearchItem.SearchItem.ListingOffer = GetOffers(listingResponseSearchItem);
+                _context.SearchItems.Add(listingResponseSearchItem.SearchItem);
                 var rows = _context.SaveChanges();
                 return rows;
             }
@@ -30,9 +31,14 @@ namespace WebApplication1.Data
 
         public int AddOrUpdate<T>(T items)
         {
-            if (items is ApiModel.ListingResponseOffers listingOffer)
+            if (items is ListingResponseSearchItem listingResponseSearchItem)
             {
-                var itemsToAdd = GetOffers(listingOffer);
+                var searchItem = _context.SearchItems.FirstOrDefault(p => p.Name == listingResponseSearchItem.SearchItem.Name);
+                if (searchItem == null)
+                    _context.SearchItems.Add(listingResponseSearchItem.SearchItem);
+                else
+                    listingResponseSearchItem.SearchItem = searchItem;
+                var itemsToAdd = GetOffers(listingResponseSearchItem);
                 foreach (var item in itemsToAdd)
                 {
                     if (_context.ListingOffer.Contains(item))
@@ -46,10 +52,10 @@ namespace WebApplication1.Data
             return 0;
         }
 
-        private List<Model.ListingOffer> GetOffers(ApiModel.ListingResponseOffers listingOffer)
+        private List<Model.ListingOffer> GetOffers(ListingResponseSearchItem listingResponseSearchItem)
         {
             var itemsToAdd = new List<Model.ListingOffer>();
-                foreach (var item in listingOffer.Promoted)
+                foreach (var item in listingResponseSearchItem.ListingResponse.Items.Promoted)
                 {
                     var images = item.Images.Select(p => new Model.OfferImages() { Url = p.Url }).ToList();
                     itemsToAdd.Add(new Model.ListingOffer()
@@ -62,7 +68,9 @@ namespace WebApplication1.Data
                         Price = double.Parse(item.SellingMode.Price.Amount, CultureInfo.InvariantCulture),
                         Stock = item.Stock.Available.Value,
                         SellingMode = item.SellingMode.Format.ToString(),
-                        Images = images
+                        Images = images,
+                        SearchItem = listingResponseSearchItem.SearchItem,
+                        SearchItemID = listingResponseSearchItem.SearchItem.ID
                     });
                 }
             return itemsToAdd;
