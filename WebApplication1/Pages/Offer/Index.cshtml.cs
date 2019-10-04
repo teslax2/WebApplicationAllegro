@@ -27,22 +27,21 @@ namespace WebApplication1.Pages.Offer
         public async Task OnGetAsync(string order = "", string filter = "")
         {
             ViewData["Order"] = order;
-            var sessionFilter = HttpContext.Session.GetValue<string>("filter");
+
             if (!string.IsNullOrEmpty(filter))
             {
-                FilterString = filter;
                 HttpContext.Session.SetValue<string>("filter", filter);
             }
-
-            else
+            else if(!string.IsNullOrEmpty(FilterString))
             {
-                FilterString = sessionFilter;
-                HttpContext.Session.Remove("filter");
+                HttpContext.Session.SetValue<string>("filter", FilterString);
             }
 
+            var sessionFilter = HttpContext.Session.GetValue<string>("filter");
+
             var listingOfferFilterred = new List<ListingOffer>();
-            if (!string.IsNullOrEmpty(FilterString))
-                listingOfferFilterred = await _context.ListingOffer.Include(p => p.Images).Where(p => p.Name.Contains(FilterString)).ToListAsync();
+            if (!string.IsNullOrEmpty(sessionFilter))
+                listingOfferFilterred = await _context.ListingOffer.Include(p => p.Images).Where(p => p.Name.Contains(sessionFilter)).ToListAsync();
             else
                 listingOfferFilterred = await _context.ListingOffer.Include(p => p.Images).ToListAsync();
             switch (order)

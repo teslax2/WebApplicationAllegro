@@ -10,12 +10,16 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
 <form class="form-inline" id="formFilter">
     <div class="form-group mx-sm-3 mb-2">
         <input asp-for="FilterString" type="text" class="form-control" placeholder="Name" id="filterInput">
     </div>
     <button type="submit" class="btn btn-primary mb-2" id="FilterButton">Filter</button>
 </form>
+<div class="right-bottom-fixed">
+    <button class="btn-dark" id="button-up">up</button>
+</div>
 <table class="table">
     <thead>
         <tr>
